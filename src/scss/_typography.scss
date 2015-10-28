@@ -1,0 +1,66 @@
+/* -- typography
+----------------------------- */
+body {
+    font:$font;
+    color:$color;
+    background:#E8EEF0 url(../img/sx-background.png) repeat 0 0;
+}
+h1, h2, h3, h4, h5, h6, b, strong {
+    font-weight:bold;
+}
+h1, h2, h3, h4, h5, h6, ul, ol, p, table, section, blockquote, header {
+    margin-bottom:20px
+}
+h1 {
+    overflow:hidden;
+    font-size:30px;
+    padding-bottom:15px;
+    border-bottom:1px solid $line-color;
+
+    small {
+        font-size:60%;
+        @extend .color-gray;
+    }
+}
+h2 {
+    font-size:22px;
+}
+h3 {
+    font-size:20px;
+}
+h4 {
+    font-size:18px;
+}
+h5 {
+    font-size:16px;
+}
+h6 {
+    font-size:14px;
+}
+p, br {
+    line-height:20px
+}
+a, a:active{
+    color:#264160;
+    text-decoration:underline;
+    cursor:pointer;
+}
+a:hover {
+    color:$color;
+}
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    margin-bottom:20px;
+    border-top:1px solid $line-color;
+}
+small {
+    font-size:11px;
+}
+::selection {
+	background:#febbb8;
+	}
+::-moz-selection {
+	background:#febbb8;
+}

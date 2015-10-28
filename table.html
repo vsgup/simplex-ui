@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Simplex UIS</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="dist/css/app.css">
+    <script src="dist/js/vendor.js"></script>
+    <script src="dist/js/app.js"></script>
+    <script>
+    $(function(){
+
+        var oTable = $('#oTable').dataTable({
+            order:[[0, 'asc']],
+            pageLength:10,
+            aoColumns:[null, {bSortable:false}, null, null, {bSortable:false}, {bSortable:false}, {bSortable:false}, {bSortable:false}]
+        });
+
+        $('#oTableFilter').on('keyup', function(){
+            return oTable.fnFilter($(this).val());
+        });
+
+        $('#oTableLength').on('change', function(){
+            return oTable.sxLength(this);
+        });
+
+        $('#oTableChecker').on('change', function(){
+            return oTable.sxToggleBoxes(this);
+        });
+
+        $(oTable).on('change','.oTable_checkbox', function(){
+            return oTable.sxToggleBox(this);
+        });
+
+        $(oTable).on('change','.oTable_checkbox, #oTableChecker', function(){
+            oTable.sxDisaplayActionButton();
+	    });
+
+        $(oTable).on('page', function(){
+            $('#oTableChecker').prop('checked', false);
+        });
+
+        $(oTable).on('click', '.oTable_details', function(){
+
+            var $handler = $(this),
+                dataID = parseInt($handler.data('id')),
+                nTR = this.parentNode;
+
+            if($handler.hasClass('opened'))
+            {
+                $handler.removeClass('opened').find('i').attr('class','icon-folder-close');
+                oTable.fnClose(nTR);
+            }
+
+            else
+            {
+                $handler.addClass('opened').find('i').attr('class','icon-folder-open');
+                oTable.fnOpen(nTR, '<p style="margin:0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci atque consequuntur cum delectus deleniti dolorum expedita laboriosam modi mollitia neque non nulla, officiis praesentium quia reprehenderit similique veniam. Quisquam?</p>', 'oTable_detailsRow');
+            }
+
+        });
+
+    });
+    </script>
+</head>
+
+<body>
+
+    <header class="sx-toolbar">
+        <nav>
+            <a class="brand" href="/">Simplex UI</a>
+            <ul>
+                <li><a href="/"><i class="icon-th-list icon-white"></i>Grid System</a></li>
+                <li class="current"><a href="/table.html"><i class="icon-th-list icon-white"></i>Table Sample</a></li>
+                <li><a href="/form.html"><i class="icon-th-list icon-white"></i>Form Sample</a></li>
+            </ul>
+            <ul class="pull-right">
+                <li><a href="/"><i class="icon-off icon-white"></i>Выход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <article class="sx-content">
+
+        <h1>Table Sample <small>title description</small></h1>
+
+        <div class="row">
+            <div class="width-30">
+                <a class="btn green"><i class="icon-plus icon-white"></i> Новая категория</a>
+                <a class="btn orange"><i class="icon-repeat icon-white"></i> Отмена</a>
+            </div>
+            <div class="width-70 text-right">
+                <div class="button-group">
+                    <input id="oTableFilter" type="text" placeholder="поиск">
+                    <select id="oTableLength">
+                        <option value="15">Показать 15</option>
+                        <option value="30">Показать 30</option>
+                        <option value="50">Показать 50</option>
+                        <option value="100">Показать 100</option>
+                    </select>
+                    <div id="oTableAction" class="button-dd">
+                        <a class="btn" title="выбранные"><i class="icon-list"></i> выбранные <i class="caret"></i></a>
+                        <ul>
+                            <li><a id="oTableStatusOn" class="pointer" data-status="1"><i class="icon-eye-open"></i> задействовать</a></li>
+                            <li><a id="oTableStatusOff" class="pointer" data-status="0"><i class="icon-eye-close"></i> отключить</a></li>
+                            <li><a id="oTableLock" class="pointer"><i class="icon-lock"></i> блокировать</a></li>
+                            <li><a id="oTableDelete" class="pointer"><i class="icon-trash"></i> удалить</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <table id="oTable" class="dataTable">
+            <thead>
+            <tr>
+                <th style="width:35px;">ID</th>
+                <th>Наименование товара <small>description</small></th>
+                <th style="width:250px;">Категория товара</th>
+                <th style="width:100px;">Цена</th>
+                <th style="width:200px;">Стоимость</th>
+                <th style="width:125px;">Управление</th>
+                <th style="width:22px;">
+                    <input id="oTableChecker" type="checkbox">
+                </th>
+                <th style="width:20px;">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <select class="width-80" tabindex="1">
+                        <option>Значение 1</option>
+                        <option>Значение 2</option>
+                        <option>Значение 3</option>
+                    </select>
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input class="width-80" type="text" value="1500.00" tabindex="2">
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <select class="width-80" tabindex="3">
+                        <option>Значение 1</option>
+                        <option>Значение 2</option>
+                        <option>Значение 3</option>
+                    </select>
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input class="width-80" type="text" value="1500.00" tabindex="4">
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <select class="width-80" tabindex="5" disabled>
+                        <option>Значение 1</option>
+                        <option>Значение 2</option>
+                        <option>Значение 3</option>
+                    </select>
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input type="number" value="9999" style="width:76px;">
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input type="text" class="datepicker" style="width:89%">
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input type="text" class="datepicker" style="width:89%" disabled>
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input class="width-80" type="text" value="1500.00">
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <div class="label-group">
+                        <span class="label green tooltip" title="1">100</span>
+                        <span class="label blue tooltip" title="1">100</span>
+                        <span class="label orange tooltip" title="1">100</span>
+                        <span class="label red tooltip" title="1">100</span>
+                        <span class="label tooltip" title="1">100</span>
+                    </div>
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <select class="width-80" tabindex="1">
+                        <option>Значение 1</option>
+                        <option>Значение 2</option>
+                        <option>Значение 3</option>
+                    </select>
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input class="width-80" type="text" value="1500.00" tabindex="2">
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <select class="width-80" tabindex="3">
+                        <option>Значение 1</option>
+                        <option>Значение 2</option>
+                        <option>Значение 3</option>
+                    </select>
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <span class="label black"><i class="icon-envelope icon-white"></i></span>
+                    <a href="#">DesignBox web design agency</a><br>
+                    <small>some text goes here</small>
+                </td>
+                <td>
+                    <small>Евробион</small>
+                </td>
+                <td>
+                    <span class="label red">100.00</span>
+                </td>
+                <td>
+                    <input class="width-80" type="text" value="1500.00" tabindex="4">
+                </td>
+                <td>
+                    <a class="btn pointer"><i class="icon-play"></i></a>
+                    <a class="btn pointer"><i class="icon-edit"></i></a>
+                    <a class="btn pointer"><i class="icon-trash"></i></a>
+                </td>
+                <td>
+                    <input type="checkbox" class="oTable_checkbox" value="1">
+                </td>
+                <td class="oTable_details" data-id="100">
+                    <i class="icon-folder-close"></i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </article>
+
+    <footer class="sx-footer">
+        <p><img src="dist/img/sx-html5.png" alt=""></p>
+        <p><a class="bold" href="/">Simplex UI</a></p>
+        <p>Developed since 2007 by <b>DesignBox web design and development agency</b>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

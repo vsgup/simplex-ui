@@ -1,0 +1,29 @@
+/* -- normalize
+----------------------------- */
+button, input, select, textarea {
+    margin:0;
+    padding:0;
+    outline:0
+}
+textarea {
+    overflow:auto
+}
+button {
+    width:auto;
+    overflow:visible
+}
+input[type=button],
+input[type=submit],
+input[type=checkbox],
+button {
+    cursor:pointer
+}
+input[type="radio"],
+input[type="checkbox"] {
+    font-size:110%
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border:0;
+    padding:0
+}

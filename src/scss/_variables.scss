@@ -1,0 +1,41 @@
+$font:normal 13px Arial, Tahoma, Verdana;
+$color:#333;
+$width:1200px;
+$radius:4px;
+$toolbar-height:42px;
+$line-color:#DDD;
+$line-height:20px;
+@mixin disabled {
+    opacity:.7;
+    cursor:default;
+}
+@mixin box-sizing {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+@mixin user-select {
+    -moz-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -o-user-select: none;
+}
+@mixin gradient($color1, $color2){
+    background:$color1;
+    background-repeat:repeat-x;
+    background-image:-moz-linear-gradient(top, $color1, $color2);
+    background-image:-webkit-linear-gradient(top, $color1, $color2);
+    background-image:-o-linear-gradient(top, $color1, $color2);
+    background-image:linear-gradient(to bottom, $color1, $color2);
+}
+@mixin clear-after {
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+@mixin transition($param){
+    transition:$param;
+    -moz-transition:$param;
+    -webkit-transition:$param;
+}

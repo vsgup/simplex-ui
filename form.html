@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Simplex UI</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="dist/css/app.css">
+    <link rel="stylesheet" href="dist/redactor/redactor.css">
+    <script src="dist/js/vendor.js"></script>
+    <script src="dist/js/app.js"></script>
+    <script src="dist/redactor/redactor.js"></script>
+    <script>
+    $(function(){
+
+        $('#redactor').redactor({
+            lang:'ru',
+            wym:true
+        });
+
+        $(".sortable").sortable({
+            items:"> li",
+            tolerance:'pointer'
+        });
+
+        $('#render-message').on('click', function(){
+
+            var message = {
+                rand:1 + Math.floor(Math.random() * 5),
+                text:'<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci amet consequuntur cumque dignissimos, ea error est explicabo.</p>',
+                types:{
+                    1:'',
+                    2:'error',
+                    3:'success',
+                    4:'warning',
+                    5:'info'
+                }
+            };
+
+            new $.Msg(message.text, {
+                type:message.types[message.rand],
+                containerClass:'sx-message',
+                renderTo:'.marker-1',
+                renderMethod:'after',
+                hidePrev:false
+            });
+
+            return true;
+
+        });
+
+        $('.sx-checkboxes :checkbox').on('click', function(){
+	        $(this).parent('label').toggleClass('selected', this.checked);
+        });
+
+    });
+    </script>
+</head>
+
+<body>
+
+    <header class="sx-toolbar">
+        <nav>
+            <a class="brand" href="/">Simplex UI</a>
+            <ul>
+                <li><a href="/"><i class="icon-th-list icon-white"></i>Grid System</a></li>
+                <li><a href="/table.html"><i class="icon-th-list icon-white"></i>Table Sample</a></li>
+                <li class="current"><a href="/form.html"><i class="icon-th-list icon-white"></i>Form Sample</a></li>
+            </ul>
+            <ul class="pull-right">
+                <li><a href="/"><i class="icon-off icon-white"></i>Выход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <article class="sx-content">
+
+        <h1>Form Sample <small>title description</small></h1>
+
+        <div class="row">
+            <div class="width-50">
+                <button class="btn green"><i class="icon-ok icon-white"></i> Сохранить</button>
+                <button class="btn orange"><i class="icon-repeat icon-white"></i> Отмена</button>
+            </div>
+            <div class="width-50 text-right"></div>
+        </div>
+
+        <ul class="sx-tabs" data-panes="#form-sample">
+            <li><a><i class="icon-th-list"></i> Вертикальная форма</a></li>
+            <li><a><i class="icon-align-justify"></i> Горизонтальная форма</a></li>
+            <li><a><i class="icon-upload"></i> Загрузчик изображений</a></li>
+            <li><a><i class="icon-resize-small"></i> Модальные окна</a></li>
+            <li><a><i class="icon-comment"></i> Сообщения</a></li>
+        </ul>
+
+        <form id="form-sample" method="post">
+
+            <div class="pane vertical">
+
+                <h2>Текстовые поля <small>примеры</small></h2>
+
+                <div class="row">
+                    <div class="width-20 title">Обычное поле:</div>
+                    <div class="width-80">
+                        <input type="text" class="width-40" value="Lorem ipsum dolor sit amet" tabindex="1">
+                        <small class="help-inline">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Поле заполнено верно:</div>
+                    <div class="width-80">
+                        <input type="text" class="width-40 success" value="Lorem ipsum dolor sit amet" tabindex="2">
+                        <small class="help-inline">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Поле заполнено не верно:</div>
+                    <div class="width-80">
+                        <input type="text" class="width-40 error" value="Lorem ipsum dolor sit amet" tabindex="3">
+                        <small class="help-inline">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Disabled поле:</div>
+                    <div class="width-80">
+                        <input type="text" class="width-40" value="Lorem ipsum dolor sit amet" disabled>
+                        <small class="help-inline">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+                    </div>
+                </div>
+
+                <h2>Выпадающие списки <small>примеры</small></h2>
+
+                <div class="row">
+                    <div class="width-20 title">Краткий выпадающий список:</div>
+                    <div class="width-80">
+                        <select class="width-40" tabindex="4">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                        <small class="help-inline">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Длинный выпадающий список:</div>
+                    <div class="width-80">
+                        <select class="width-40" tabindex="5">
+                            <option>Option 1</option>
+                            <option disabled>Disabled Option</option>
+                            <option disabled>Disabled Option</option>
+                            <option disabled>Disabled Option</option>
+                            <option>Option 5</option>
+                            <option>Option 6</option>
+                            <option>Option 7</option>
+                            <option>Option 8</option>
+                            <option>Option 9</option>
+                            <option>Option 10</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Текст списка по умолчанию:</div>
+                    <div class="width-80">
+                        <select class="width-40" data-placeholder="Выберите значение из списка..." tabindex="6">
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Многоуровневый список:</div>
+                    <div class="width-80">
+                        <select class="width-40" tabindex="7">
+                            <optgroup label="Option Group 1">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </optgroup>
+                            <optgroup label="Option Group 2">
+                                <option>Option 4</option>
+                                <option>Option 5</option>
+                                <option>Option 6</option>
+                            </optgroup>
+                            <optgroup label="Option Group 4">
+                                <option>Option 7</option>
+                                <option>Option 8</option>
+                                <option>Option 9</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Disabled список:</div>
+                    <div class="width-80">
+                        <select class="width-40" disabled tabindex="8">
+                            <option>Значение 1</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Multiple список:</div>
+                    <div class="width-80">
+                        <select class="width-40" multiple tabindex="9" data-placeholder="Выберите какие-то опции">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                        <small class="help-inline">Текст по умолчанию можно установить через: <span class="color-red">data-placeholder</span></small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Длинный multiple список:</div>
+                    <div class="width-80">
+                        <select class="width-40" multiple tabindex="10">
+                            <option selected>Selected Option</option>
+                            <option selected disabled>Selected & Disabled</option>
+                            <option disabled>Disabled Option</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                            <option>Option 6</option>
+                            <option>Option 7</option>
+                            <option>Option 8</option>
+                            <option>Option 9</option>
+                            <option>Option 10</option>
+                        </select>
+                        <small class="help-inline">option может быть: <span class="color-red">selected, disabled, selected+disabled</span></small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Многоуровн. multiple список:</div>
+                    <div class="width-80">
+                        <select class="width-40" multiple tabindex="11">
+                            <optgroup label="Option Group 1">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </optgroup>
+                            <optgroup label="Option Group 2">
+                                <option>Option 4</option>
+                                <option>Option 5</option>
+                                <option>Option 6</option>
+                            </optgroup>
+                            <optgroup label="Option Group 3">
+                                <option>Option 7</option>
+                                <option>Option 8</option>
+                                <option>Option 9</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Disabled multiple список:</div>
+                    <div class="width-80">
+                        <select class="width-40" multiple disabled tabindex="12">
+                            <option selected>Option 1</option>
+                            <option selected>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h2>Кнопки <small>примеры</small></h2>
+
+                <div class="row">
+                    <div class="width-20 title">Кнопки c текстом:</div>
+                    <div class="width-80">
+                        <button class="btn">btn</button>
+                        <button class="btn green">btn green</button>
+                        <button class="btn red">btn red</button>
+                        <button class="btn orange">btn orange</button>
+                        <button class="btn blue">btn blue</button>
+                        <button class="btn purple">btn purple</button>
+                        <button class="btn black">btn black</button>
+                        <button class="btn teal">btn teal</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title"> Кнопки с иконками и текстом:</div>
+                    <div class="width-80">
+                        <button class="btn"><i class="icon-plus"></i> btn</button>
+                        <button class="btn green"><i class="icon-th-list icon-white"></i> btn green</button>
+                        <button class="btn red"><i class="icon-th icon-white"></i> btn red</button>
+                        <button class="btn orange"><i class="icon-align-center icon-white"></i> btn orange</button>
+                        <button class="btn blue"><i class="icon-repeat icon-white"></i> btn blue</button>
+                        <button class="btn purple"><i class="icon-adjust icon-white"></i> btn purple</button>
+                        <button class="btn black"><i class="icon-backward icon-white"></i> btn black</button>
+                        <button class="btn teal"><i class="icon-trash icon-white"></i> btn teal</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Кнопки с иконками:</div>
+                    <div class="width-80">
+                        <button class="btn"><i class="icon-plus"></i></button>
+                        <button class="btn green"><i class="icon-th-list icon-white"></i></button>
+                        <button class="btn red"><i class="icon-th icon-white"></i></button>
+                        <button class="btn orange"><i class="icon-align-center icon-white"></i></button>
+                        <button class="btn blue"><i class="icon-repeat icon-white"></i></button>
+                        <button class="btn purple"><i class="icon-adjust icon-white"></i></button>
+                        <button class="btn black"><i class="icon-backward icon-white"></i></button>
+                        <button class="btn teal"><i class="icon-trash icon-white"></i></button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Disabled кнопки:</div>
+                    <div class="width-80">
+                        <button class="btn" disabled>btn</button>
+                        <button class="btn green" disabled>btn green</button>
+                        <button class="btn red" disabled>btn red</button>
+                        <button class="btn orange" disabled>btn orange</button>
+                        <button class="btn blue" disabled>btn blue</button>
+                        <button class="btn purple" disabled>btn purple</button>
+                        <button class="btn black" disabled>btn black</button>
+                        <button class="btn teal" disabled>btn teal</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Loading кнопки:</div>
+                    <div class="width-80">
+                        <button class="btn loading"> btn loading</button>
+                        <button class="btn green loading"> btn green loading</button>
+                        <button class="btn purple loading"> btn purple loading</button>
+                        <button class="btn orange loading"> btn orange loading</button>
+                        <button class="btn teal loading"> btn teal loading</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Группа кнопок:</div>
+                    <div class="width-80">
+                        <div class="button-group">
+                            <button class="btn"><i class="icon-play"></i></button>
+                            <button class="btn"><i class="icon-stop"></i></button>
+                            <button class="btn"><i class="icon-pause"></i></button>
+                            <button class="btn"><i class="icon-backward"></i></button>
+                            <button class="btn"><i class="icon-forward"></i></button>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn green"><i class="icon-play icon-white"></i></button>
+                            <button class="btn green"><i class="icon-stop icon-white"></i></button>
+                            <button class="btn green"><i class="icon-pause icon-white"></i></button>
+                            <button class="btn green"><i class="icon-backward icon-white"></i></button>
+                            <button class="btn green"><i class="icon-forward icon-white"></i></button>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn red"><i class="icon-play icon-white"></i></button>
+                            <button class="btn red"><i class="icon-stop icon-white"></i></button>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn purple"><i class="icon-backward icon-white"></i></button>
+                            <button class="btn purple"><i class="icon-forward icon-white"></i></button>
+                        </div>
+                        <small class="help-inline color-red">.button-group</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Кнопки со списками:</div>
+                    <div class="width-80">
+                        <div class="button-dd">
+                            <a class="btn"><i class="icon-list"></i> Действие <i class="caret"></i></a>
+                            <ul>
+                                <li><a><i class="icon-eye-open"></i> задействовать</a></li>
+                                <li><a><i class="icon-eye-close"></i> отключить</a></li>
+                                <li><a><i class="icon-th-large"></i> изменить группу</a></li>
+                                <li><a><i class="icon-trash"></i> удалить</a></li>
+                            </ul>
+                        </div>
+                        <div class="button-dd">
+                            <a class="btn green"><i class="icon-list icon-white"></i> Залененькая :)</a>
+                            <ul>
+                                <li><a><i class="icon-eye-open"></i> задействовать</a></li>
+                                <li><a><i class="icon-eye-close"></i> отключить</a></li>
+                                <li><a><i class="icon-th-large"></i> изменить группу</a></li>
+                                <li><a><i class="icon-trash"></i> удалить</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Multiple checkboxes <small>примеры</small></h2>
+
+                <div class="row">
+                    <div class="width-20 title"></div>
+                    <div class="width-80">
+                        <div class="sx-checkboxes width-40">
+                            <label class="parent">Parent name</label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label class="selected">
+                                <input type="checkbox" name="checkbox[]" value="true" checked> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label class="parent">Parent name</label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label class="parent">Parent name</label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                        </div>
+                        <div class="sx-checkboxes width-40">
+                            <label class="parent">Parent name</label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label class="selected">
+                                <input type="checkbox" name="checkbox[]" value="true" checked> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label class="parent">Parent name</label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label class="parent">Parent name</label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                            <label>
+                                <input type="checkbox" name="checkbox[]" value="true"> Checkbox option
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Дополнительные плагины <small>примеры</small></h2>
+
+                <div class="row">
+                    <div class="width-20 title">Календарь:</div>
+                    <div class="width-80">
+                        <input type="text" class="datepicker" style="width:110px;">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Numinput:</div>
+                    <div class="width-80">
+                        <input type="number" value="500" data-max="100" data-step="10">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Switcher:</div>
+                    <div class="width-80">
+                        <div class="sx-switcher">
+                            <a class="btn" data-value="0">Param 0</a>
+                            <a class="btn" data-value="1">Param 1</a>
+                            <a class="btn" data-value="2">Param 2</a>
+                            <a class="btn" data-value="3">Param 3</a>
+                            <input type="hidden" name="switcher">
+                        </div>
+                        <small class="help-inline">класс выделения кнопки по умолчанию <span class="color-red">.current</span>, цвет по умолчанию <span class="color-red">.black</span></small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Switcher:</div>
+                    <div class="width-80">
+                        <div class="sx-switcher" data-current="2" data-selected="selected" data-color="red">
+                            <a class="btn" data-value="0">Param 0</a>
+                            <a class="btn" data-value="1">Param 1</a>
+                            <a class="btn" data-value="2">Param 2</a>
+                            <a class="btn" data-value="3">Param 3</a>
+                            <input type="hidden" name="switcher">
+                        </div>
+                        <small class="help-inline">класс выделения кнопки <span class="color-red">.selected</span>, цвет выделения <span class="color-red">.red</span>, выделена 3 кнопка</small>
+                    </div>
+                </div>
+
+                <h2>Textarea <small>примеры</small></h2>
+
+                <div class="row">
+                    <div class="width-20 title">Обычная:</div>
+                    <div class="width-80">
+                        <textarea class="width-100"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="width-20 title">Redactor:</div>
+                    <div class="width-80">
+                        <textarea id="redactor" class="width-100"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pane row">
+
+                <ul class="horizontal width-25">
+                    <li>
+                        <label>Наименование поля:</label>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <input type="text">
+                    </li>
+                </ul>
+
+                <ul class="horizontal width-25">
+                    <li>
+                        <label>Наименование поля:</label>
+                        <select>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <select>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <select>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <select>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </li>
+                </ul>
+
+                <ul class="horizontal width-50">
+                    <li>
+                        <label>Наименование поля:</label>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <select>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <label>Наименование поля:</label>
+                        <select>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="pane">
+
+                <div class="row">
+                    <div class="btn green"><i class="icon-upload icon-white"></i> Выбрать изображения</div>
+                </div>
+
+                <hr>
+
+                <ul class="gallery sortable">
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/1b.jpg" rel="zoom"><img src="dist/img/temp/1.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="disabled">
+                            <a class="pointer" href="dist/img/temp/2b.jpg" rel="zoom"><img src="dist/img/temp/2.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="disabled">
+                            <a class="pointer" href="dist/img/temp/3b.jpg" rel="zoom"><img src="dist/img/temp/3.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/4b.jpg" rel="zoom"><img src="dist/img/temp/4.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/5b.jpg" rel="zoom"><img src="dist/img/temp/5.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/6b.jpg" rel="zoom"><img src="dist/img/temp/6.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/7b.jpg" rel="zoom"><img src="dist/img/temp/7.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/8b.jpg" rel="zoom"><img src="dist/img/temp/8.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/9b.jpg" rel="zoom"><img src="dist/img/temp/9.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <a class="pointer" href="dist/img/temp/10b.jpg" rel="zoom"><img src="dist/img/temp/10.jpg"></a>
+                            <figcaption class="text-right">
+                                <div class="button-dd">
+                                    <a class="btn"><i class="icon-th-list"></i>  Действие <i class="caret"></i></a>
+                                    <ul>
+                                        <li><a><i class="icon-edit"></i> Редактировать</a></li>
+                                        <li><a><i class="icon-trash"></i> Удалить</a></li>
+                                        <li><a><i class="icon-eye-open"></i> Отключить</a></li>
+                                    </ul>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="pane">
+
+                <div class="row end">
+                    <a class="btn open-modal" href="/modal1.html"><i class="icon-zoom-in"></i>  Обычное модальное окно</a>
+                    <a class="btn open-modal" href="/modal2.html"><i class="icon-zoom-in"></i>  Окно с формой</a>
+                    <a class="btn open-modal" href="/modal3.html"><i class="icon-zoom-in"></i>  Окно с картой</a>
+                </div>
+
+            </div>
+
+            <div class="pane">
+
+                <div class="row marker-1">
+                    <a id="render-message" class="btn green"><i class="icon-comment icon-white"></i> Показать сообщение</a>
+                </div>
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="sx-message">
+                        <a class="close" title="Закрыть"></a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci amet consequuntur cumque dignissimos, ea error est explicabo.</p>
+                        <hr>
+                        <div class="row">
+                            <select class="width-30">
+                                <option>Value 1</option>
+                                <option>Value 2</option>
+                                <option>Value 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sx-message end">
+                        <a class="close" title="Закрыть"></a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci amet consequuntur cumque dignissimos, ea error est explicabo illum itaque maiores nihil non optio perferendis placeat quas quibusdam quis, tempora.</p>
+                        <hr>
+                        <div class="row">
+                            <button class="btn green"><i class="icon-ok icon-white"></i> Сохранить</button>
+                            <button class="btn orange"><i class="icon-repeat icon-white"></i> Отмена</button>
+                        </div>
+                    </div>
+
+                 </div>
+
+            </div>
+
+        </form>
+
+    </article>
+
+    <footer class="sx-footer">
+        <p><img src="dist/img/sx-html5.png" alt=""></p>
+        <p><a class="bold" href="/">Simplex UI</a></p>
+        <p>Developed since 2007 by <b>DesignBox web design and development agency</b>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

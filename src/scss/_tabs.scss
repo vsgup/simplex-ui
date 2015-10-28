@@ -1,0 +1,51 @@
+/* -- tabs
+----------------------------- */
+.sx-tabs {
+    list-style:none;
+    margin-bottom:30px;
+    border-bottom:1px solid $line-color;
+
+    &:after {
+        content:"";
+        display:block;
+        line-height:0;
+        height:0;
+        clear:both;
+    }
+
+    li {
+        float:left;
+        margin-bottom:-1px;
+        @include user-select;
+    }
+
+    li a {
+        display:block;
+        height:36px;
+        line-height:36px;
+        vertical-align:middle;
+        text-decoration:none;
+        padding:0 11px;
+        margin-right:2px;
+        border:1px solid transparent;
+        border-radius:$radius $radius 0 0;
+        cursor:pointer;
+    }
+
+    li:hover a {
+        background:#EFEFEF;
+    }
+
+    li.current a {
+        border:1px solid $line-color;
+        border-bottom:1px solid #FFF;
+        background:#FFF;
+        cursor:default;
+    }
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+        margin:-3px 3px 0 0;
+    }
+
+}

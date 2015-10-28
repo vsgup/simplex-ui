@@ -1,0 +1,30 @@
+<script>
+$(function(){
+
+    $.getScript('http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU', function() {
+        ymaps.ready(init);
+    });
+
+    function init () {
+
+        // Base init
+        var myMap = new ymaps.Map('yandexMap', { center:[45.1962, 33.3642], zoom:14 });
+
+        // Map controls
+        myMap.controls.add('zoomControl').add('mapTools').add('searchControl');
+
+        // Remove copyright & yandex logo
+        $('#yandexMap').find('.ymaps-copyrights-pane').remove();
+    }
+
+});
+</script>
+
+<div class="sx-modal" style="width:800px">
+    <article class="zero">
+        <div id="yandexMap" style="height:500px"></div>
+    </article>
+    <footer class="text-right">
+        <a class="btn" href='javascript:void(0);' onclick="$.fancybox.close();"><i class="icon-zoom-out"></i> Закрыть окно</a>
+    </footer>
+</div>

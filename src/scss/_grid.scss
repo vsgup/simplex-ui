@@ -1,0 +1,74 @@
+/* -- grid
+----------------------------- */
+.row {
+
+    margin-bottom:20px;
+
+    &:last-child {
+        margin-bottom:0;
+    }
+
+    &:after {
+        content:".";
+        display:block;
+        height:0;
+        clear:both;
+        visibility:hidden;
+    }
+}
+
+.width-100 {
+     width:100%;
+}
+.width-80 {
+     width:79.4%;
+}
+.width-75 {
+     width:74.25%;
+}
+.width-70 {
+     width:69.1%;
+}
+.width-66 {
+     width:65.66666666666666%;
+}
+.width-60 {
+     width:58.800000000000004%;
+}
+.width-50 {
+     width:48.5%;
+}
+.width-40 {
+     width:38.2%;
+}
+.width-33 {
+     width:31.333333333333332%;
+}
+.width-30 {
+     width:27.9%;
+}
+.width-25 {
+     width:22.75%;
+}
+.width-20 {
+     width:17.6%;
+}
+.width-100,
+.width-80,
+.width-75,
+.width-70,
+.width-66,
+.width-60,
+.width-50,
+.width-40,
+.width-33,
+.width-30,
+.width-25,
+.width-20 {
+    float:left;
+    margin-left:3%;
+    @include box-sizing;
+}
+[class^="width-"]:first-child, [class*=" width-"]:first-child {
+    margin-left:0;
+}

@@ -1,0 +1,72 @@
+/* -- Zebra_Tooltip plugin
+----------------------------- */
+.Zebra_Tooltip {
+
+    position:absolute;
+    z-index:8000;
+    background:transparent;
+
+    .Zebra_Tooltip_Message {
+        position:relative;
+        padding:10px 20px;
+        font-size:inherit;
+        text-align:left;
+        font-weight:normal;
+        line-height:inherit;
+        border-radius:5px;
+        box-shadow:2px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .Zebra_Tooltip_Arrow {
+
+        position:absolute;
+        height:10px;
+        width:20px;
+        overflow:hidden;
+
+        div {
+            position:absolute;
+            border:10px solid;
+            height:0;
+            width:0;
+            left:0;
+        }
+
+    }
+
+    .Zebra_Tooltip_Arrow_Bottom {
+
+        bottom:0;
+
+        div {
+            top:0;
+        }
+
+    }
+
+    .Zebra_Tooltip_Arrow_Top {
+
+        top:0;
+
+        div {
+            bottom:0;
+        }
+
+    }
+
+    .Zebra_Tooltip_Close {
+
+        text-decoration:none;
+        color:#FFF;
+        position:absolute;
+        right:8px;
+        top:1px;
+        font-size:inherit;
+        font-weight:bold;
+
+        &:hover {
+            color:#C40000;
+        }
+
+    }
+}

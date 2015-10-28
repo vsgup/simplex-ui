@@ -1,0 +1,26 @@
+/* -- base
+----------------------------- */
+.sx-content {
+    width:$width;
+    margin:70px auto 40px auto;
+    border:1px solid #CAD8DE;
+    border-radius:$radius;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.08);
+    background:#FFF;
+    padding:30px 40px;
+    @include box-sizing;
+}
+.sx-footer {
+    overflow:hidden;
+    width:$width;
+    margin:0 auto 30px auto;
+
+    p {
+        text-align:center;
+        margin-bottom:15px;
+
+        &:last-child {
+            margin-bottom:0;
+        }
+    }
+}

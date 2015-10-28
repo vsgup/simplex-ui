@@ -1,0 +1,74 @@
+/* -- forms
+----------------------------- */
+.vertical {
+
+    .title {
+        display:block;
+        padding-top:10px;
+        text-align:right;
+
+        small {
+            @extend .color-gray;
+        }
+    }
+
+    h2 {
+        padding:5px 0 15px 0;
+        border-bottom:1px solid $line-color;
+    }
+
+    h2 small {
+        font-size:16px;
+        @extend .color-gray;
+    }
+}
+
+.horizontal {
+
+    list-style:none;
+    margin-bottom:0;
+
+    > li {
+
+        margin-bottom: 20px;
+
+        &:last-child {
+            margin-bottom:0;
+        }
+
+        &:after {
+            @include clear-after;
+        }
+
+        label {
+            display:block;
+            font-weight:bold;
+            margin-bottom:10px;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=email],
+        select,
+        textarea {
+            width:100%;
+        }
+    }
+}
+
+/* -- form helpers
+----------------------------- */
+.help-inline,
+.help-block {
+    @extend .color-gray;
+}
+.help-inline {
+    vertical-align:baseline;
+    margin-left:10px;
+    line-height:36px;
+}
+.help-block {
+    display:block;
+    line-height:20px;
+    margin-top:10px;
+}

@@ -1,0 +1,70 @@
+/* -- modals
+----------------------------- */
+
+//------ fancybox overrides ------//
+.fancybox-simplex {
+
+    .fancybox-skin {
+        background:transparent;
+        background:#FFF;
+        border:1px solid #CAD8DE;
+        border-radius:$radius;
+        padding:0 !important; // хак что бы не указывать при инициализации: padding:0
+    }
+
+    .fancybox-inner {
+        height:auto !important; // хак что бы не указывать при инициализации: minHeight:0
+    }
+
+    &.fancybox-opened .fancybox-skin {
+        box-shadow:0 1px 3px 2px rgba(0,0,0,0.10);
+    }
+
+    .fancybox-close {
+        width:16px;
+        height:16px;
+        background:url(../img/sx-close.gif) no-repeat 0 0;
+        top:12px;
+        right:12px;
+    }
+}
+
+//------ modal skin ------//
+.sx-modal {
+
+    width:auto;
+    min-width:200px;
+
+    header {
+        margin:0;
+        padding:13px 35px 11px 15px;
+        font-weight:bold;
+        border-bottom:1px solid #DDE0E8;
+        border-radius:$radius $radius 0 0;
+        box-shadow:inset 0 -1px #FFF;
+        text-shadow:1px 1px #FFF;
+        background:#F0F5F7;
+
+        small {
+            font-weight:normal;
+            @extend .color-gray;
+        }
+    }
+
+    article {
+        margin:10px 15px;
+    }
+
+    footer {
+        padding:10px 15px;
+        border-top:1px solid #DDE0E8;
+        border-radius:0 0 $radius $radius;
+        box-shadow:inset 0 1px #FFF;
+        background:#F0F5F7;
+    }
+
+    p:last-child {
+        margin-bottom:0;
+    }
+
+}

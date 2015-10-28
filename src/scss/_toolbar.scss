@@ -1,0 +1,133 @@
+/* -- toolbar
+----------------------------- */
+.sx-toolbar {
+
+    position:fixed;
+    width:100%;
+    left:0;
+    top:0;
+    background:#333;
+    box-shadow:0 -1px 0 rgba(0, 0, 0, 0.1) inset, 0 1px 10px rgba(0, 0, 0, 0.1);
+    z-index:1001;
+
+    nav {
+        display:table;
+        width:$width;
+        margin:0 auto;
+    }
+
+    .brand,
+    .brand:visited,
+    .brand:active {
+        float:left;
+        display:inline-block;
+        padding:0 12px 0 38px;
+        height:$toolbar-height;
+        line-height:$toolbar-height;
+        vertical-align:middle;
+        font-size:16px;
+        color:#BBB;
+        text-decoration:none;
+        border-right:1px solid #444;
+        background:url(../img/sx-logo.png) no-repeat left center;
+        transition-duration:140ms;
+        transition-timing-function: ease-in-out;
+    }
+
+    .brand:hover {
+        color:#FFF;
+    }
+
+    ul {
+        float:left;
+        margin:0;
+    }
+
+    ul li {
+        position:relative;
+        float:left;
+    }
+
+    ul li a,
+    ul li a:visited,
+    ul li a:active {
+        display:block;
+        height:$toolbar-height;
+        line-height:$toolbar-height;
+        vertical-align:middle;
+        padding:0 12px;
+        color:#BBB;
+        text-decoration:none;
+        border-left:1px solid #000;
+        border-right:1px solid #444;
+        transition-duration:140ms;
+        transition-timing-function:ease-in-out;
+    }
+
+    ul > li:hover > a,
+    ul > li.current > a {
+        background:#444;
+        color:#FFF;
+    }
+
+    ul li:last-child a {
+        border-right:none;
+    }
+
+    ul.pull-right li:first-child a {
+        border-left:none;
+    }
+
+    ul li:hover ul {
+        display:block;
+    }
+
+    ul ul {
+        position:absolute;
+        overflow:hidden;
+        display:none;
+        float:left;
+        min-width:150px;
+        top:100%;
+        left:0;
+        background:#333;
+        border-radius:0 0 $radius $radius;
+        z-index:1001;
+    }
+
+    ul ul li {
+        float:none;
+    }
+
+    ul ul li a,
+    ul ul li a:visited,
+    ul ul li a:active {
+        height:38px;
+        line-height:38px;
+        white-space:nowrap;
+        border:none;
+        border-top:1px solid #555;
+        border-bottom:1px solid #222;
+        background:#444;
+    }
+
+    ul ul li:hover a {
+        background:#333;
+        color:#FFF;
+    }
+
+    ul ul li:last-child a {
+        border-bottom:none;
+        border-radius:0 0 $radius $radius;
+    }
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+        margin:-2px 5px 0 0;
+    }
+
+    .caret {
+        border-top:4px solid #FFF;
+        margin-left:3px;
+    }
+}

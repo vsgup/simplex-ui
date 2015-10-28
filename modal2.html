@@ -1,0 +1,78 @@
+<script>
+$(function(){
+
+    $("select").chosen({
+        allow_single_deselect:true,
+        search_contains:true,
+        max_selected_options:15,
+        no_results_text:"Совпадений не найдено",
+        placeholder_text_multiple:"Выберите опции",
+        display_disabled_options:true, // default
+        display_selected_options:true  // default
+    });
+
+});
+</script>
+
+<div class="sx-modal" style="width:650px;">
+    <header>Modal header <small>modal description goes here</small></header>
+    <article>
+        <form class="row">
+            <ul class="horizontal width-50">
+                <li>
+                    <label>Наименование поля:</label>
+                    <input type="text">
+                </li>
+                <li>
+                    <label>Наименование поля:</label>
+                    <select>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Наименование поля:</label>
+                    <input type="text">
+                </li>
+                <li>
+                    <label>Наименование поля:</label>
+                    <select>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </li>
+            </ul>
+            <ul class="horizontal width-50">
+                <li>
+                    <label>Наименование поля:</label>
+                    <input type="text">
+                </li>
+                <li>
+                    <label>Наименование поля:</label>
+                    <select>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Наименование поля:</label>
+                    <input type="text">
+                </li>
+                <li>
+                    <label>Наименование поля:</label>
+                    <select>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                </li>
+            </ul>
+        </form>
+    </article>
+    <footer class="text-right">
+        <a class="btn" href='javascript:void(0);' onclick="$.fancybox.close();"><i class="icon-zoom-out"></i> Закрыть окно</a>
+    </footer>
+</div>

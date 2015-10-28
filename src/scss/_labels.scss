@@ -1,0 +1,63 @@
+/* -- labels
+----------------------------- */
+.label {
+    display:inline-block;
+    font-size:12px;
+    font-weight:bold;
+    line-height:14px;
+    white-space:nowrap;
+    vertical-align:baseline;
+    color:#FFF;
+    padding:2px 4px;
+    margin:0 3px;
+    text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+    background:#999;
+    border-radius:$radius;
+
+    &.green {
+        background:#468847;
+    }
+
+    &.orange {
+        background:#F89406;
+    }
+
+    &.red {
+        background:#B94A48;
+    }
+
+    &.blue {
+        background:#3A87AD;
+    }
+
+    &.black {
+        background:#5C6166;
+    }
+
+    &.pink {
+        background:#EA3288;
+    }
+
+    &.purple {
+        background:#564F8A;
+    }
+
+    &.teal {
+        background:#00B5AD;
+    }
+}
+/* -- label-group
+----------------------------- */
+.label-group {
+
+    display:inline-block;
+    white-space:nowrap;
+    padding:5px;
+    background:#E1E9F2;
+    border-radius:$radius;
+
+    .label {
+        margin:0 1px;
+    }
+
+}
